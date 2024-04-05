@@ -18,6 +18,7 @@ body {
 
 /* --------------------------Style des element-------- */
 .to-do-container {
+  grid-area: right;
   min-width: 500px;
   margin: auto;
   background: #fff;

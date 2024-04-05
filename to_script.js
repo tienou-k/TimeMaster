@@ -5,8 +5,9 @@ let date = document.getElementById("date");
 
 // cette fonction met à jour automatiquement la date à chaque seconde
 function setTime() {
-  
-  date.innerHTML = moment(new Date()).locale('fr').format("dddd,  DD MMMM YYYY HH:mm:ss A");
+  date.innerHTML = moment(new Date())
+    .locale("fr")
+    .format("dddd,  DD MMMM YYYY HH:mm:ss A");
 }
 setInterval(setTime, 1000);
 
@@ -40,7 +41,7 @@ function generateHTMLcode(todo_text, priority, deadline) {
   let icon = document.createElement("i");
 
   // Appliquer les classes pour le style :
- 
+
   list_div.classList.add("list");
   text_div.classList.add("todo-item-date-text");
   text_div.classList.add("todo-content");
@@ -54,7 +55,7 @@ function generateHTMLcode(todo_text, priority, deadline) {
 
   // Définir le contenu des éléments textuels :
   text_p.innerHTML = todo_text;
- create_p.innerHTML = "Crée:" + moment(new Date()).format(" DD  MMM HH:mm ");
+  create_p.innerHTML = "Crée:" + moment(new Date()).format(" DD  MMM HH:mm ");
   priority_p.innerHTML = "Prio: " + priority;
   deadline_p.innerHTML = "Éch: " + deadline;
 
@@ -67,7 +68,7 @@ function generateHTMLcode(todo_text, priority, deadline) {
   });
 
   // Assembler la structure HTML :
-  
+
   btn.appendChild(icon);
   btn_div.appendChild(btn);
   text_div.append(text_p, create_p, priority_p, deadline_p);
@@ -84,5 +85,3 @@ function listDone(list) {
 function removeListItem(list) {
   list.remove();
 }
-
-// Afficher ou masquer les options de personnalisation lors du clic sur le bouton "Ajouter"
