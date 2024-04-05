@@ -10,15 +10,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
     />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/locale/fr.min.js"></script>
   </head>
   <body>
+    <h1>TimeMaster</h1>
     <div class="to-do-container">
       <div class="bg">
         <div class="image-darker">
-          <h3 id="date"></h3>
+          <span id="date"></span>
         </div>
       </div>
-      <form action="" id="todo">
+      <form id="todo">
         <div class="form-inputs">
           <input
             type="text"
@@ -26,13 +28,9 @@
             id="todo-input"
             autocomplete="off"
             placeholder="Entrer une tache....."
-         required />
-          <input
-            type="date"
-            name="deadline"
-            id="deadline-input"
-            placeholder="Date d'échéance (optionnel)"
+            required
           />
+          <input type="date" name="deadline" id="deadline-input" required />
           <select name="priority" id="priority-select">
             <option value="low">Basse priorité</option>
             <option value="medium">Moyenne priorité</option>

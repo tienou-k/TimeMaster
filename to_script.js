@@ -5,7 +5,8 @@ let date = document.getElementById("date");
 
 // cette fonction met à jour automatiquement la date à chaque seconde
 function setTime() {
-  date.innerHTML = moment(new Date()).format("dddd,  MMMM YYYY HH:mm:ss A");
+  
+  date.innerHTML = moment(new Date()).locale('fr').format("dddd,  DD MMMM YYYY HH:mm:ss A");
 }
 setInterval(setTime, 1000);
 
