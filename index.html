@@ -4,46 +4,46 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TimeMaster</title>
+    <link rel="stylesheet" href="./main.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
   </head>
   <body>
-    <div>
-      <h1>TimeMaster App</h1>
-    </div>
-    <div class="wrapper">
-      <div class="taskt-input">
-        <i class="fa fa-server" aria-hidden="true"></i>
-        <input type="text" placeholder="Nouveele taches" id="txtItem" />
-        <i class="fa fa-floppy-o" onclick="saveTask()" aria-hidden="true"></i>
-      </div>
-      <div class="control">
-        <div class="filtre">
-          <span class="active" id="all">Tous</span>
-          <span class="pending"> A faire</span>
-          <span class="pending">En Cours</span>
-          <span class="completed">Achevés</span>
+    <div class="to-do-container">
+      <div class="bg">
+        <div class="image-darker">
+          <h3 id="date"></h3>
         </div>
-        <button class="clear-btn active">Tous Suppr</button>
       </div>
-      <ul class="task-box">
-        <li class="task">
-          <label for="">
-            <p>Nom</p>
-          </label>
-          <div class="settings">
-            <i class="fa fa-pencil-square" aria-hidden="true"></i>
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </div>
-        </li>
-        <li class="task">
-          <label for="">
-            <p>Nom</p>
-          </label>
-          <div class="settings">
-            <i class="fa fa-pencil-square" aria-hidden="true"></i>
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </div>
-        </li>
-      </ul>
+      <form action="" id="todo">
+        <div class="form-inputs">
+          <input
+            type="text"
+            name="todo"
+            id="todo-input"
+            autocomplete="off"
+            placeholder="Entrer une tache....."
+         required />
+          <input
+            type="date"
+            name="deadline"
+            id="deadline-input"
+            placeholder="Date d'échéance (optionnel)"
+          />
+          <select name="priority" id="priority-select">
+            <option value="low">Basse priorité</option>
+            <option value="medium">Moyenne priorité</option>
+            <option value="high">Haute priorité</option>
+          </select>
+          <button type="submit" id="submit-btn">
+            <i class="fa fa-plus"></i>
+          </button>
+        </div>
+      </form>
+      <div class="todo-list-row" id="todo-row"></div>
     </div>
     <script src="./to_script.js"></script>
   </body>

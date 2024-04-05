@@ -1,0 +1,188 @@
+:root {
+  --clor1: linear-gradient(#dc2424, #4a569d);
+  --clor2: #fff;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 50px;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  background: var(--clor1);
+  align-items: center;
+  font-size: 16px;
+  color: #222;
+}
+.to-do-container {
+  min-width: 500px;
+  margin: auto;
+  background: #fff;
+  box-shadow: 0 10px 80px #0000003d;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  height: 525px;
+  position: relative;
+}
+.bg {
+  background-image: url(./images/Design\ sans\ titre.png);
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+  height: 150px;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  display: flex;
+  align-items: flex-end;
+}
+.image-darker {
+  height: 100%;
+  width: 100%;
+  background: rgba(19, 4, 153, 0.658);
+  display: flex;
+  align-items: flex-end;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+}
+#date {
+  margin: 0;
+  color: #fff;
+  padding: 10px;
+  font-size: 15px;
+}
+#todo {
+  margin: 0;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: 1px solid #3331313d;
+}
+.form-inputs {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+#todo-input {
+  width: 100%;
+  padding: 15px;
+  border: none;
+  outline: none;
+  margin-top: 6px;
+  font-size: 16px;
+}
+
+#submit-btn {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  margin-right: 15px;
+  border: 1px solid #ccc;
+  background: #6379f5;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#todo-row {
+  max-height: 65%;
+  overflow: auto;
+}
+.list {
+  display: flex;
+  border-bottom: 1px solid #ccc;
+  padding: 0 10px;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+/* Aligner les éléments en trois colonnes */
+.todo-content {
+  display: flex;
+  justify-content: space-between; 
+  align-items: center;
+  width: 100%; 
+}
+
+.todo-content p {
+  flex-basis: 30%; 
+}
+/* ---------------------------- */
+.list.done {
+  opacity: 0.6;
+}
+.list.done .todo-text {
+  text-decoration: line-through;
+  opacity: 0.8;
+}
+.todo-item-date-text {
+  width: 100%;
+}
+.created-date {
+  font-size: 12px;
+  opacity: 0.8;
+}
+.todo-text {
+  width: 100%;
+  font-weight: 600;
+}
+.list:hover .delete-list {
+  display: inline;
+}
+.delete-list {
+  display: none;
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+}
+.delete-list:hover {
+  color: rgb(234, 69, 69);
+}
+
+
+/* Style pour l'input type date */
+input[type="date"] {
+  border:none;
+  margin-right: 25px;
+  font-size: 16px;
+  width: 5%;
+  box-sizing: border-box;
+  margin-bottom: 0%;
+}
+
+/* Style pour le select */
+select {
+  padding: 3px;
+  border: none;
+  margin-right: 25px;
+  font-size: 16px;
+  width: 5%;
+  box-sizing: border-box;
+  margin-bottom: 1px;
+}
+
+/* Style pour les options du select */
+select option {
+  padding: 8px;
+}
+
+/* Style pour le placeholder de l'input type date */
+
+input[type="date"]::webkit-calendar-picker-indicator {
+  background: transparent;
+  color: transparent;
+  font-size: 0;
+}
+
+/* Style pour le placeholder du select */
+option[value=""][disabled] {
+  display: none;
+}
+
+/* Style pour les options sélectionnées du select */
+option:checked {
+  background: #f0f0f0;
+}
