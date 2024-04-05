@@ -126,17 +126,20 @@ h1{
 .todo-item-date-text {
   width: 100%;
 }
-.created-date {
-  display: none;
-  font-size: 10px;
-  opacity: 0.8;
+.created-date, .todo-priority, .todo-deadline{
+  font-weight: 700;
+  text-transform: capitalize;
+  color: #222;
+  font-size: 14px;
+  opacity: 0.5;
 }
 .todo-text {
   width: 100%;
   font-weight: 600;
 }
 .list:hover .delete-list {
-  display: inline;
+  display: flex;
+  justify-content: space-between;
 }
 .delete-list {
   display: none;

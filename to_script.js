@@ -38,8 +38,6 @@ function generateHTMLcode(todo_text, priority, deadline) {
   let btn_div = document.createElement("div");
   let btn = document.createElement("button");
   let icon = document.createElement("i");
-  let btn_edit = document.createElement("button");
-  let icon_edit = document.createElement("i");
 
   // Appliquer les classes pour le style :
  
@@ -52,13 +50,11 @@ function generateHTMLcode(todo_text, priority, deadline) {
   deadline_p.classList.add("todo-deadline");
   btn_div.classList.add("list-buttons");
   btn.classList.add("delete-list");
-  icon.classList.add("fa", "fa-times-circle");
-  btn_edit.classList.add("edit-list");
-  icon_edit.classList.add("fa", "fa-edit");
+  icon.classList.add("fa", "fa-trash");
 
   // Définir le contenu des éléments textuels :
   text_p.innerHTML = todo_text;
-  create_p.innerHTML = moment(new Date()).format("dddd,  MMMM YYYY HH:mm:ss A");
+ create_p.innerHTML = "Crée:" + moment(new Date()).format(" DD  MMM HH:mm ");
   priority_p.innerHTML = "Prio: " + priority;
   deadline_p.innerHTML = "Éch: " + deadline;
 
