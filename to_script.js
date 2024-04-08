@@ -99,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const deadlineP = document.createElement("p");
     deadlineP.classList.add("todo-deadline");
-    deadlineP.textContent = "Éch: " + item.deadline;
+    deadlineP.textContent = "Éch:" + "\n"  + item.deadline;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-list");
