@@ -85,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
       listDiv.remove();
       markItemAsDeleted(listDiv.dataset.id);
     });
-
     //Ecouter l'évènement de clic sur le bouton de modification
     editBtn.addEventListener("click", () => {
       alert("Cette fonction est à implenter");
@@ -111,26 +110,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     saveItemsToStorage(updatedItemsArray);
-  }
-
-  function updateLocalStorageAfterDelete(itemId) {
-    // Charger les éléments actuels depuis le localStorage
-    let itemsArray = JSON.parse(localStorage.getItem("todo-input")) || [];
-
-    // Rechercher l'élément à supprimer dans le tableau d'éléments chargés
-    const updatedItemsArray = itemsArray.map((item) => {
-      if (item.id === itemId) {
-        // Marquer l'élément comme supprimé
-        return { ...item, deleted: true };
-      }
-      return item;
-    });
-
-    // Filtrer le tableau pour exclure les éléments marqués comme supprimés
-    const filteredItems = updatedItemsArray.filter((item) => !item.deleted);
-
-    // Mettre à jour le localStorage avec le nouveau tableau filtré
-    localStorage.setItem("todo-input", JSON.stringify(filteredItems));
   }
 
   // Fonction pour charger les tâches depuis le localStorage
