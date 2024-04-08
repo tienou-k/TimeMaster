@@ -7,7 +7,7 @@
   box-sizing: border-box;
 }
 body {
-  padding: 50px;
+  padding: 0px;
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: var(--clor1);
