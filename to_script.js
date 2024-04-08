@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.getElementById("submit-btn");
-  const form = document.getElementById("todo");
+  const todoInput = document.getElementById("todo-input");
+  const prioritySelect = document.getElementById("priority-select");
+  const deadlineInput = document.getElementById("deadline-input");
   const todoList = document.getElementById("todo-row");
   const date = document.getElementById("date");
 
@@ -15,45 +17,72 @@ document.addEventListener("DOMContentLoaded", () => {
       .format("dddd, DD MMMM YYYY HH:mm:ss A");
   }
 
+  // Ajouter un écouteur d'événements sur le champ de saisie pour vérifier son contenu
+  todoInput.addEventListener("input", () => {
+    validateInput();
+  });
+
+  // Valider le champ de saisie pour activer ou désactiver le bouton "Ajouter"
+  function validateInput() {
+    if (todoInput.value.trim() !== "") {
+      submitBtn.removeAttribute("disabled");
+    } else {
+      submitBtn.setAttribute("disabled", true);
+    }
+  }
+
+  // Ajouter un écouteur d'événements sur le bouton "Ajouter"
   submitBtn.addEventListener("click", (event) => {
     // Empêcher le comportement par défaut du formulaire
     event.preventDefault();
 
     // Récupérer les valeurs des champs du formulaire
-    const todoInput = document.getElementById("todo-input");
-    const prioritySelect = document.getElementById("priority-select");
-    const deadlineInput = document.getElementById("deadline-input");
+    const todoText = todoInput.value.trim();
+    const priority = prioritySelect.value;
+    const deadline = deadlineInput.value;
 
-    // Créer une nouvelle tâche avec les valeurs des champs du formulaire
-    createItem(todoInput.value, prioritySelect.value, deadlineInput.value);
+    if (todoText !== "") {
+      // Créer une nouvelle tâche avec les valeurs des champs du formulaire
+      const newItem = {
+        id: generateUniqueId(),
+        todoText,
+        priority,
+        deadline,
+        deleted: false,
+      };
 
-    // Réinitialiser les valeurs des champs du formulaire
-    todoInput.value = "";
-    prioritySelect.value = "Faible";
-    deadlineInput.value = "";
+      // Ajouter la nouvelle tâche aux données stockées
+      addItemToStorage(newItem);
+
+      // Mettre à jour l'interface utilisateur avec les tâches mises à jour
+      renderTodoList();
+
+      // Réinitialiser les valeurs des champs du formulaire
+      todoInput.value = "";
+      prioritySelect.value = "Faible";
+      deadlineInput.value = "";
+
+      // Désactiver à nouveau le bouton "Ajouter"
+      submitBtn.setAttribute("disabled", true);
+    }
   });
 
-  function createItem(todoText, priority, deadline) {
-    // Créer un élément HTML représentant une tâche
-    const todo = generateHTMLcode(todoText, priority, deadline);
+  function renderTodoList() {
+    // Effacer la liste actuelle des tâches affichées
+    todoList.innerHTML = "";
 
-    // Ajouter la tâche à la liste des tâches affichées
-    todoList.appendChild(todo);
-
-    // Charger les tâches depuis le localStorage, ajouter la nouvelle tâche et sauvegarder
+    // Charger les tâches depuis le localStorage et afficher uniquement celles non supprimées
     const itemsArray = loadItemsFromStorage();
-    itemsArray.push({
-      id: generateUniqueId(),
-      todoText,
-      priority,
-      deadline,
-      deleted: false,
+    itemsArray.forEach((item) => {
+      if (!item.deleted) {
+        const todo = generateHTMLcode(item);
+        todoList.appendChild(todo);
+      }
     });
-    saveItemsToStorage(itemsArray);
   }
 
-  // Fonction pour créer un élément HTML représentant une tâche
-  function generateHTMLcode(todoText, priority, deadline) {
+  //creation des élément de la liste des taches
+  function generateHTMLcode(item) {
     const listDiv = document.createElement("div");
     listDiv.classList.add("list");
 
@@ -62,84 +91,73 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const textP = document.createElement("p");
     textP.classList.add("todo-text");
-    textP.textContent = todoText;
+    textP.textContent = item.todoText;
 
     const priorityP = document.createElement("p");
     priorityP.classList.add("todo-priority");
-    priorityP.textContent = "Prio: " + priority;
+    priorityP.textContent = "Prio: " + item.priority;
 
     const deadlineP = document.createElement("p");
     deadlineP.classList.add("todo-deadline");
-    deadlineP.textContent = "Éch: " + deadline;
+    deadlineP.textContent = "Éch: " + item.deadline;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-list");
     deleteBtn.innerHTML = '<i class="fa fa-trash"></i>';
 
+    deleteBtn.addEventListener("click", () => {
+      // Marquer l'élément comme supprimé et mettre à jour le localStorage
+      markItemAsDeleted(item.id);
+      // Mettre à jour l'interface utilisateur
+      renderTodoList();
+    });
+
     const editBtn = document.createElement("button");
     editBtn.classList.add("edit-list");
     editBtn.innerHTML = '<i class="fa fa-edit"></i>';
 
-    // Écouter l'événement de clic sur le bouton de suppression
-    deleteBtn.addEventListener("click", () => {
-      listDiv.remove();
-      markItemAsDeleted(listDiv.dataset.id);
-    });
-    //Ecouter l'évènement de clic sur le bouton de modification
     editBtn.addEventListener("click", () => {
-      alert("Cette fonction est à implenter");
+      // Au click sur le button modifier
+      alert("Cette fonctionalité n'est implenter !");
+      // Mettre à jour l'interface utilisateur
+      renderTodoList();
     });
 
+    //------------------------------------------------
     textDiv.append(textP, priorityP, deadlineP);
-    listDiv.append(textDiv, deleteBtn, editBtn);
-
-    // Stocker l'ID de la tâche dans l'attribut data-id pour la gestion ultérieure
-    listDiv.dataset.id = generateUniqueId();
+    listDiv.append(textDiv, editBtn, deleteBtn);
 
     return listDiv;
   }
 
-  // Fonction pour marquer une tâche comme supprimée
-  function markItemAsDeleted(itemId) {
-    const itemsArray = loadItemsFromStorage();
-    const updatedItemsArray = itemsArray.map((item) => {
-      if (item.id === itemId) {
-        return { ...item, deleted: true };
-      }
-      return item;
-    });
-
-    saveItemsToStorage(updatedItemsArray);
-  }
-
-  // Fonction pour charger les tâches depuis le localStorage
   function loadItemsFromStorage() {
     return JSON.parse(localStorage.getItem("todo-input")) || [];
   }
 
-  // Fonction pour sauvegarder les tâches dans le localStorage
-  function saveItemsToStorage(itemsArray) {
-    // Filtrer les tâches supprimées avant de sauvegarder
-    const filteredItems = itemsArray.filter((item) => !item.deleted);
-    localStorage.setItem("todo-input", JSON.stringify(filteredItems));
+  function addItemToStorage(item) {
+    const itemsArray = loadItemsFromStorage();
+    itemsArray.push(item);
+    localStorage.setItem("todo-input", JSON.stringify(itemsArray));
   }
 
-  // Fonction pour générer un identifiant unique
+  function markItemAsDeleted(itemId) {
+    const itemsArray = loadItemsFromStorage();
+    const updatedItemsArray = itemsArray.map((item) => {
+      if (item.id === itemId) {
+        item.deleted = true;
+      }
+      return item;
+    });
+    localStorage.setItem("todo-input", JSON.stringify(updatedItemsArray));
+  }
+
   function generateUniqueId() {
     return Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
   }
 
-  // Charger les tâches existantes depuis le localStorage au chargement de la page
-  const itemsArray = loadItemsFromStorage();
-  itemsArray.forEach((item) => {
-    // Afficher uniquement les tâches non supprimées
-    if (!item.deleted) {
-      const todo = generateHTMLcode(
-        item.todoText,
-        item.priority,
-        item.deadline
-      );
-      todoList.appendChild(todo);
-    }
-  });
+  // Au chargement initial de la page, afficher les tâches existantes
+  renderTodoList();
+
+  // Valider le champ de saisie initial au chargement de la page
+  validateInput();
 });
