@@ -43,21 +43,29 @@ h1{
 }
 
 .image-darker {
+  display: flex;
   height: 100%;
   width: 100%;
   background: rgba(19, 4, 153, .8);
-  display: flex;
-  align-items: end;
   border-top-left-radius: 16px;
   border-top-right-radius: 16px;
+  
 }
 
+.logo{
+  width:150px;
+  position: relative;
+  float: left;
+  filter: brightness(0) invert();
+}
 #date {
   text-transform: capitalize;
-  margin: 0;
+  margin: 0px;
   color: #fff;
-  padding: 10px;
+  padding: 15px;
   font-size: 15px;
+  padding-right: 190px;
+  padding-top: 55px;
 }
 #todo {
   margin: 0;
