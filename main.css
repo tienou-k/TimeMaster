@@ -211,3 +211,67 @@ option[value=""][disabled] {
 option:checked {
   background: #f0f0f0;
 }
+
+@media screen and (min-width: 1024px) {
+  body {
+    padding: 50px 100px;
+  }
+
+  .to-do-container {
+    min-width: 700px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  body {
+    padding: 30px;
+  }
+
+  .to-do-container {
+    min-width: 500px;
+  }
+}
+@media screen and (max-width: 767px) {
+  body {
+    padding: 20px;
+  }
+
+  .to-do-container {
+    grid-area: right;
+    min-width: 200px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 10px 80px #0000003d;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    height: 525px;
+    position: relative;
+  }
+  select {
+    width: 20px;
+    border: none;
+    margin-right: 5px;
+    font-size: 16px;
+    /* width: 50px; */
+    box-sizing: border-box;
+    margin-bottom: 1px;
+  }
+  #date {
+    padding-top: 15px;
+    font-size: 10px;
+  }
+  .logo {
+    width: 100px;
+    height: 100px;
+    padding-left: 5px;
+    float: left;
+    filter: brightness(0) invert();
+  }
+  .image-darker {
+    display: grid;
+    height: 100%;
+    width: 100%;
+    background: rgba(19, 4, 153, 0.8);
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+  }
+}
