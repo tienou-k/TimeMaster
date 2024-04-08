@@ -1,6 +1,6 @@
 En tant que futurs développeurs, la gestion des plannings sera une part essentielle de votre quotidien. Ainsi, le projet ci-dessous vous fournira un outil pratique à portée de main pour faciliter cette tâche.
 
-# Nom du projet: TimeMaster (###Liste de Tâches Interactive)
+# Nom du projet: TimeMaster (Liste de Tâches Interactive)
 
 ### Objectif :
 
