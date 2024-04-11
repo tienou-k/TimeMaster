@@ -81,13 +81,21 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  //creation des élément de la liste des taches
+  // Créer les éléments HTML pour afficher une tâche
   function generateHTMLcode(item) {
     const listDiv = document.createElement("div");
     listDiv.classList.add("list");
 
     const textDiv = document.createElement("div");
     textDiv.classList.add("todo-content");
+
+    // Ajouter un gestionnaire d'événements pour barrer/débarrer le texte au clic
+    textDiv.addEventListener("click", () => {
+      const textP = textDiv.querySelector(".todo-text");
+      if (textP) {
+        textP.classList.toggle("completed");
+      }
+    });
 
     const textP = document.createElement("p");
     textP.classList.add("todo-text");
@@ -99,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const deadlineP = document.createElement("p");
     deadlineP.classList.add("todo-deadline");
-    deadlineP.textContent =  item.deadline;
+    deadlineP.textContent = item.deadline;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-list");
@@ -116,30 +124,25 @@ document.addEventListener("DOMContentLoaded", () => {
     editBtn.classList.add("edit-list");
     editBtn.innerHTML = '<i class="fa fa-edit"></i>';
 
-    editBtn.addEventListener("click", () => {
-      // Au click sur le button modifier
-      alert("Cette fonctionalité n'est implenter !");
-      // Mettre à jour l'interface utilisateur
-      renderTodoList();
-    });
-
-    //------------------------------------------------
     textDiv.append(textP, priorityP, deadlineP);
     listDiv.append(textDiv, editBtn, deleteBtn);
 
     return listDiv;
   }
 
+  // Charger les tâches depuis le localStorage
   function loadItemsFromStorage() {
     return JSON.parse(localStorage.getItem("todo-input")) || [];
   }
 
+  // Ajouter une tâche à localStorage
   function addItemToStorage(item) {
     const itemsArray = loadItemsFromStorage();
     itemsArray.push(item);
     localStorage.setItem("todo-input", JSON.stringify(itemsArray));
   }
 
+  // Marquer une tâche comme supprimée dans localStorage
   function markItemAsDeleted(itemId) {
     const itemsArray = loadItemsFromStorage();
     const updatedItemsArray = itemsArray.map((item) => {
@@ -151,13 +154,12 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("todo-input", JSON.stringify(updatedItemsArray));
   }
 
+  // Générer un identifiant unique pour une tâche
   function generateUniqueId() {
     return Date.now().toString(36) + Math.random().toString(36).substring(2, 8);
   }
 
-  // Au chargement initial de la page, afficher les tâches existantes
+  // Initialiser l'interface utilisateur
   renderTodoList();
-
-  // Valider le champ de saisie initial au chargement de la page
   validateInput();
 });

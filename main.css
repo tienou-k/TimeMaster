@@ -153,10 +153,10 @@ h1 {
 }
 
 /* ---------------------------- */
-.list.done {
+.list.completed {
   opacity: 0.6;
 }
-.list.done .todo-text {
+.list.completed .todo-text {
   text-decoration: line-through;
   opacity: 0.8;
 }
