@@ -156,7 +156,7 @@ h1 {
 
 .list .completed {
   text-decoration: line-through;
-  opacity: 0.6;
+  opacity: 0.3;
 }
 .todo-item-date-text {
   width: 100%;
