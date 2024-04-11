@@ -95,11 +95,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const priorityP = document.createElement("p");
     priorityP.classList.add("todo-priority");
-    priorityP.textContent = "Prio: " + item.priority;
+    priorityP.textContent = item.priority;
 
     const deadlineP = document.createElement("p");
     deadlineP.classList.add("todo-deadline");
-    deadlineP.textContent = "Éch:" + "\n"  + item.deadline;
+    deadlineP.textContent =  item.deadline;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-list");
