@@ -135,13 +135,13 @@ h1 {
   width: 100%;
 }
 
- .list-column th {
+.list-column th {
   border: 1px solid #ddd;
   padding: 8px;
 }
 
-.list-column th:nth-child(1){
-width: 200px;
+.list-column th:nth-child(1) {
+  width: 200px;
 }
 
 .list-column th {
@@ -151,8 +151,6 @@ width: 200px;
   background: #4a569d;
   color: white;
 }
-
-
 
 /* ---------------------------- */
 .list.done {
