@@ -91,9 +91,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Ajouter un gestionnaire d'événements pour barrer/débarrer le texte au clic
     textDiv.addEventListener("click", () => {
-      const textP = textDiv.querySelector(".todo-text");
-      if (textP) {
+      const textP = textDiv.querySelector(".todo-text",".todo-priority",".todo-deadline");
+      if (textP, priorityP, deadlineP) {
         textP.classList.toggle("completed");
+        priorityP.classList.toggle("completed");
+        deadlineP.classList.toggle("completed");
       }
     });
 

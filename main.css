@@ -153,12 +153,10 @@ h1 {
 }
 
 /* ---------------------------- */
-.list.completed {
-  opacity: 0.6;
-}
-.list.completed .todo-text {
+
+.list .completed {
   text-decoration: line-through;
-  opacity: 0.8;
+  opacity: 0.6;
 }
 .todo-item-date-text {
   width: 100%;
@@ -167,9 +165,8 @@ h1 {
 .todo-deadline {
   font-weight: 700;
   text-transform: capitalize;
-  color: #222;
+  color: #000000;
   font-size: 14px;
-  opacity: 0.6;
 }
 .todo-text {
   width: 100%;
@@ -260,7 +257,7 @@ option:checked {
   .to-do-container {
     min-width: 500px;
   }
-  
+}
 @media screen and (max-width: 767px) {
   body {
     padding: 20px;
