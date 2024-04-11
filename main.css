@@ -66,10 +66,10 @@ h1 {
 }
 #todo {
   margin: 0;
-  position: absolute;
+  position: relative;
   bottom: 0;
   width: 100%;
-  border-top: 1px solid #3331313d;
+  padding-bottom: 1%;
 }
 .form-inputs {
   display: flex;
@@ -127,6 +127,33 @@ h1 {
 .todo-content p {
   flex-basis: 40%;
 }
+/*------------------ table---------------- */
+
+.list-column {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ .list-column th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.list-column th:nth-child(1){
+width: 200px;
+}
+
+.list-column th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background: #4a569d;
+  color: white;
+}
+
+
+
 /* ---------------------------- */
 .list.done {
   opacity: 0.6;
@@ -149,6 +176,8 @@ h1 {
 .todo-text {
   width: 100%;
   font-weight: 600;
+  font-size: 14px;
+  padding-right: 5px;
 }
 .delete-list {
   display: flex;
