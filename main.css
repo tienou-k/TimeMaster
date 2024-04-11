@@ -204,11 +204,10 @@ h1 {
 /* Style pour l'input type date */
 input[type="date"] {
   border: none;
-  /* margin-right: 5px; */
   font-size: 16px;
-  /* width: 5%; */
   box-sizing: border-box;
   margin-bottom: 0%;
+  width: 165px;
 }
 
 /* Style pour le select */
@@ -261,7 +260,7 @@ option:checked {
   .to-do-container {
     min-width: 500px;
   }
-}
+  
 @media screen and (max-width: 767px) {
   body {
     padding: 20px;
@@ -287,6 +286,7 @@ option:checked {
     box-sizing: border-box;
     margin-bottom: 1px;
   }
+  
   #date {
     padding-top: 15px;
     font-size: 10px;
